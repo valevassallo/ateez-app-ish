@@ -1,9 +1,11 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
+import { Platform } from 'react-native';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
+import MembersScreen from '../screens/MembersScreen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -21,15 +23,23 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={HomeScreen}
         options={{
           title: 'Get Started',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={ Platform.OS === 'ios' ? "ios-home" : "md-home"} />,
         }}
       />
       <BottomTab.Screen
-        name="Links"
+        name="Members"
+        component={MembersScreen}
+        options={{
+          title: 'Members',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={ Platform.OS === 'ios' ? "ios-people" : "md-people"} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Sources"
         component={LinksScreen}
         options={{
-          title: 'Resources',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+          title: 'Sources',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={ Platform.OS === 'ios' ? "ios-book" : "md-book"} />,
         }}
       />
     </BottomTab.Navigator>
@@ -41,8 +51,10 @@ function getHeaderTitle(route) {
 
   switch (routeName) {
     case 'Home':
-      return 'How to get started';
-    case 'Links':
-      return 'Links to learn more';
+      return 'Get started with ATEEZ';
+    case 'Members':
+      return 'Members';
+    case 'Sources':
+      return 'Sources'
   }
 }

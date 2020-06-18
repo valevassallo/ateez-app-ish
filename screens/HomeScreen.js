@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { MonoText } from '../components/StyledText';
+import Discography from '../components/Discography';
 
 export default function HomeScreen() {
   return (
@@ -11,43 +11,38 @@ export default function HomeScreen() {
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
         <View style={styles.welcomeContainer}>
           <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
+            source={require('../assets/images/ateezkq.jpeg')}
             style={styles.welcomeImage}
           />
         </View>
 
         <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
 
-          <Text style={styles.getStartedText}>Open up the code for this screen:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/HomeScreen.js</MonoText>
-          </View>
-
-          <Text style={styles.getStartedText}>
-            Change any of the text, save the file, and your app will automatically reload.
+          <Text style={styles.questionText}>What is ATEEZ?</Text>
+          <Text style={styles.normalText}>
+            Ateez, is an 8-member boy group from South Korea under the company KQ Entertainment. They debuted on October 24, 2018 with the songs ‘Treasure’ and ‘Pirate King’ of 'Treasure EP.1: All to Zero'.
           </Text>
+
+          <Text style={styles.questionText}>What does ATEEZ mean?</Text>
+          <Text style={styles.normalText}>
+            ATEEZ is an acronym for "A TEEnager Z", It also stands for "A to Z" meaning everyone, they are a group of teenagers who are aiming to do everything they can enthusiastically.
+          </Text>
+
+          <Text style={styles.questionText}>What's the fandom name?</Text>
+          <Text style={styles.normalText}>
+            The official fandom name is Atiny, a contraction of 'ATEEZ' and 'destiny', and it was presented by the members on November 17, 2018 on VLive. However, it was officially established on November 22, 2019.
+          </Text>
+
+          <Text style={{...styles.questionText, marginBottom: 12}}>Discography</Text>
+          <Discography />
         </View>
 
         <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
+          <TouchableOpacity onPress={handlePress} style={styles.link}>
+            <Text style={styles.linkText}>Official ATEEZ site</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
-
-      <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-        <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>navigation/BottomTabNavigator.js</MonoText>
-        </View>
-      </View>
     </View>
   );
 }
@@ -56,36 +51,9 @@ HomeScreen.navigationOptions = {
   header: null,
 };
 
-function DevelopmentModeNotice() {
-  if (__DEV__) {
-    const learnMoreButton = (
-      <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-        Learn more
-      </Text>
-    );
-
-    return (
-      <Text style={styles.developmentModeText}>
-        Development mode is enabled: your app will be slower but you can use useful development
-        tools. {learnMoreButton}
-      </Text>
-    );
-  } else {
-    return (
-      <Text style={styles.developmentModeText}>
-        You are not in development mode: your app will run at full speed.
-      </Text>
-    );
-  }
-}
-
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/workflow/development-mode/');
-}
-
-function handleHelpPress() {
+function handlePress() {
   WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change'
+    'http://ateez.kqent.com/'
   );
 }
 
@@ -94,31 +62,22 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
-  },
   contentContainer: {
-    paddingTop: 30,
+    paddingTop: 4,
   },
   welcomeContainer: {
     alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
+    marginBottom: 8,
   },
   welcomeImage: {
-    width: 100,
-    height: 80,
+    width: 280,
+    height: 260,
     resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
+    marginLeft: -10
   },
   getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
+    alignItems: 'flex-start',
+    marginHorizontal: 30,
   },
   homeScreenFilename: {
     marginVertical: 7,
@@ -131,11 +90,19 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     paddingHorizontal: 4,
   },
-  getStartedText: {
-    fontSize: 17,
+  questionText: {
+    fontSize: 18,
+    fontWeight: '700',
+    lineHeight: 26,
+    color: '#000',
+    marginTop: 6,
+    marginBottom: 4
+  },
+  normalText: {
+    fontSize: 15,
     color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
+    lineHeight: 22,
+    textAlign: 'left',
   },
   tabBarInfoContainer: {
     position: 'absolute',
@@ -169,11 +136,13 @@ const styles = StyleSheet.create({
     marginTop: 15,
     alignItems: 'center',
   },
-  helpLink: {
+  link: {
     paddingVertical: 15,
   },
-  helpLinkText: {
-    fontSize: 14,
+  linkText: {
+    fontSize: 16,
     color: '#2e78b7',
+    fontStyle: 'italic',
+    fontWeight: '500'
   },
 });

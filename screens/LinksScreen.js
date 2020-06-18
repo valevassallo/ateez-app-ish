@@ -6,26 +6,32 @@ import { RectButton, ScrollView } from 'react-native-gesture-handler';
 
 export default function LinksScreen() {
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <OptionButton
-        icon="md-school"
-        label="Read the Expo documentation"
-        onPress={() => WebBrowser.openBrowserAsync('https://docs.expo.io')}
-      />
+    <View style={styles.container}>
+      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+          <Text style={styles.textStyles}>nothing here yet whoopsies</Text>
+      </ScrollView>
+    </View>
+    // <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+    //   {/* <OptionButton
+    //     icon="md-school"
+    //     label="Read the Expo documentation"
+    //     onPress={() => WebBrowser.openBrowserAsync('https://docs.expo.io')}
+    //   />
 
-      <OptionButton
-        icon="md-compass"
-        label="Read the React Navigation documentation"
-        onPress={() => WebBrowser.openBrowserAsync('https://reactnavigation.org')}
-      />
+    //   <OptionButton
+    //     icon="md-compass"
+    //     label="Read the React Navigation documentation"
+    //     onPress={() => WebBrowser.openBrowserAsync('https://reactnavigation.org')}
+    //   />
 
-      <OptionButton
-        icon="ios-chatboxes"
-        label="Ask a question on the forums"
-        onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}
-        isLastOption
-      />
-    </ScrollView>
+    //   <OptionButton
+    //     icon="ios-chatboxes"
+    //     label="Ask a question on the forums"
+    //     onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}
+    //     isLastOption
+    //   /> */}
+    //   <Text>nothing here bais</Text>
+    // </ScrollView>
   );
 }
 
@@ -51,6 +57,12 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     paddingTop: 15,
+  },
+  textStyles: {
+    fontSize: 17,
+    color: 'rgba(96,100,109, 1)',
+    lineHeight: 24,
+    textAlign: 'center',
   },
   optionIconContainer: {
     marginRight: 12,
